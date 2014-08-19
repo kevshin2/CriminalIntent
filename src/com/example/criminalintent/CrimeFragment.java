@@ -28,20 +28,20 @@ public class CrimeFragment extends Fragment {
 	public static CrimeFragment newInstance(UUID crimeId) {
 		Bundle args = new Bundle();
 		args.putSerializable(EXTRA_CRIME_ID, crimeId);
-		Log.d(TAG, "before new CrimeFragment");
+		//Log.d(TAG, "before new CrimeFragment");
 		CrimeFragment fragment = new CrimeFragment();
-		Log.d(TAG, "after new CrimeFragment");
+		//Log.d(TAG, "after new CrimeFragment");
 		fragment.setArguments(args);
-		Log.d(TAG, "args set");
+		//Log.d(TAG, "args set");
 		return fragment;
 	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "getting ID");
+		//Log.d(TAG, "getting ID");
 		UUID crimeId = (UUID)getArguments().getSerializable(EXTRA_CRIME_ID);
-		Log.d(TAG, "args rechieved");
+		//Log.d(TAG, "args rechieved");
 		mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
 	}
 	
@@ -49,6 +49,7 @@ public class CrimeFragment extends Fragment {
 	@Override 
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_crime, parent, false);
+		//Log.d(TAG, "oncreateview");
 		mTitleField = (EditText)v.findViewById(R.id.crime_title);
 		mTitleField.setText(mCrime.getTitle());
 		mTitleField.addTextChangedListener(new TextWatcher() {
