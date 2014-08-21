@@ -50,15 +50,7 @@ public class CrimeFragment extends Fragment {
 		mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
 	}
 	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode != Activity.RESULT_OK) return;
-		if (resultCode == REQUEST_DATE) {
-			Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-			mCrime.setDate(date);
-			updateDate();
-		}
-	}
+	
 	
 	public void updateDate() {
 		String d = DateFormat.format("E, MMMM dd, yyyy", mCrime.getDate()).toString();
@@ -115,5 +107,15 @@ public class CrimeFragment extends Fragment {
 		});
 		
 		return v;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != Activity.RESULT_OK) return;
+		if (requestCode == REQUEST_DATE) {
+			Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+			mCrime.setDate(date);
+			updateDate();
+		}
 	}
 }
